@@ -23,7 +23,7 @@ def pascal_triangle(n):
         ]
 
     Time Complexity: O(n^2)
-    Space Complexity: O(1)
+    Space Complexity: O(n^2)
     Note: this approach uses nCr formula and factorial from math module
     """
     from math import factorial as fact
