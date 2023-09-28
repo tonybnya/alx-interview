@@ -32,15 +32,15 @@ def pascal_triangle(n):
 
     # Outer loop iterates from 0 to n
     for i in range(n):
-        # Create a string variable line to hold each line
-        line = ''
+        # Create an array variable line to hold each line
+        line = []
         # Inner loop iterates from 0 to i + 1
         for j in range(i + 1):
             # Apply nCr formula: nCr = n! / ((n - r)! * r!)
             # here n = i & r = j
             num = fact(i) // (fact(i - j) * fact(j))
-            # Append the equivalent number to the string line
-            line += str(num)
+            # Append the equivalent num to the line array
+            line.append(num)
         # Transform the corresponding line to a list and append to the matrix
         matrix.append(list(line))
 
