@@ -47,11 +47,11 @@ def canUnlockAll(boxes):
     Space Complexity:
     """
     hashmap = {0: boxes[0]}
-    visited = set()
+    unlocked = set()
 
     for i in range(len(boxes)):
         if i in hashmap:
-            visited.add(i)
+            unlocked.add(i)
             for item in hashmap[i]:
                 if item in hashmap:
                     continue
@@ -60,4 +60,4 @@ def canUnlockAll(boxes):
         else:
             hashmap[i] = boxes[i]
 
-    return len(boxes) == len(visited)
+    return len(boxes) == len(unlocked)
