@@ -53,7 +53,7 @@ def canUnlockAll(boxes):
         if i in hashmap:
             unlocked.add(i)
             for item in hashmap[i]:
-                if item in hashmap:
+                if item in unlocked:
                     continue
                 else:
                     hashmap[item] = boxes[item]
