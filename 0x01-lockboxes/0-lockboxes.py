@@ -46,18 +46,37 @@ def canUnlockAll(boxes):
     Time Complexity:
     Space Complexity:
     """
-    hashmap = {0: boxes[0]}
-    unlocked = set()
+    # unlocked = set()
+    # hashmap = {0: boxes[0]}
+    # unlocked.add(0)
+    #
+    # for i in range(len(boxes)):
+    #     if i not in hashmap:
+    #         hashmap[i] = boxes[i]
+    #     else:
+    #         unlocked.add(i)
+    #         for item in hashmap[i]:
+    #             if item in hashmap:
+    #                 continue
+    #             else:
+    #                 hashmap[item] = boxes[item]
+    #
+    # return len(boxes) == len(unlocked)
+    q = __import__('my-queue').MyQueue()
+    q.push(0)
 
-    for i in range(len(boxes)):
-        if i in hashmap:
-            unlocked.add(i)
-            for item in hashmap[i]:
-                if item in unlocked:
-                    continue
-                else:
-                    hashmap[item] = boxes[item]
-        else:
-            hashmap[i] = boxes[i]
+    s = set()
+    s.add(0)
 
-    return len(boxes) == len(unlocked)
+    while not q.is_empty():
+        k = q.pop()
+        s.add(k)
+
+        lst = boxes[k]
+        for i in range(len(lst)):
+            q.push(lst[i])
+
+        if q.is_empty:
+            return False
+
+    return len(boxes) - 1 == len(s) - 1
