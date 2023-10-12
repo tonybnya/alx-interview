@@ -46,66 +46,31 @@ def canUnlockAll(boxes):
     Time Complexity: O(n + m)
     Space Complexity: O(n)
     """
-    # # Initialize a variable n and set it to the number of boxes
-    # n = len(boxes)
-    # # Initialize a variable unlocked as a list
-    # # with the same length as the number of boxes
-    # # Set each item of the list to False
-    # unlocked = [False] * n
-    #
-    # # The first box is unlocked
-    # unlocked[0] = True
-    # # Initialize a queue and enqueue the first box (0)
-    # queue = [0]
-    # # Initialize a set to keep track of keys we already have
-    # keys = set([0])
-    #
-    # # Traverse the boxes
-    # while queue:
-    #     # Dequeue a box
-    #     box = queue.pop(0)
-    #
-    #     # Check each key in the current box
-    #     for key in boxes[box]:
-    #         # Check if the key is not in the set
-    #         if key not in keys:
-    #             # Add the key to the set
-    #             keys.add(key)
-    #             # Mark it as unlocked
-    #             unlocked[key] = True
-    #             # Enqueue the newly opened box
-    #             queue.append(key)
-    #
-    # # Check if all boxes have been unlocked
-    # return all(unlocked)
-
-    # n = len(boxes)  # Number of boxes
-    # unlocked = [False] * n  # Initialize the 'unlocked' list
-    #
-    # def helper(box):
-    #     unlocked[box] = True
-    #     for key in boxes[box]:
-    #         if not unlocked[key]:
-    #             helper(key)
-    #
-    # # Start checking from the first box
-    # helper(0)
-    #
-    # # Check if all boxes have been unlocked
-    # return all(unlocked)
-
+    # Get the length of the boxes as a variable n
     n = len(boxes)
-    keys = set()  # Create a set to track the boxes we can open
-    keys.add(0)   # Start with the first box already opened
+    # Create a set to track the boxes we can open
+    keys = set()
+    # Start with the first box already opened
+    keys.add(0)
 
     # Create a list to keep track of boxes that need to be checked
     queue = [0]
 
+    # Traverse the boxes
     while queue:
+        # Dequeue a box
         box = queue.pop()
+        # For each key in the current box
         for key in boxes[box]:
+            # Check if the key is a valid key
+            # i.e. less than the the number of boxes
+            # means that 0 <= key <= n - 1,
+            # and if the key is not already in the set
             if key < n and key not in keys:
+                # Add the the current key to the set
                 keys.add(key)
+                # Add the current to the list that keeping track
+                # of the boxes needed to be checked
                 queue.append(key)
 
     # Check if we can open all the boxes
