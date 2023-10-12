@@ -36,4 +36,19 @@ def minOperations(n):
     Returns:
         an integer
     """
-    pass
+    if n <= 1:
+        return 0
+
+    operations = [0] * (n + 1)
+
+    for i in range(2, n + 1):
+        # Initialize operations for i to be i operations
+        operations[i] = i
+
+        for j in range(2, (i // 2) + 1):
+            if i % j == 0:
+                # If i is divisible by j, we can try to copy j times
+                # and then paste the result, which takes two operations.
+                operations[i] = min(operations[i], operations[j] + (i // j))
+
+    return operations[n]
