@@ -57,6 +57,8 @@ def canUnlockAll(boxes):
     unlocked[0] = True
     # Initialize a queue and enqueue the first box (0)
     queue = [0]
+    # Initialize a set to keep track of keys we already have
+    keys = set([0])
 
     # Traverse the boxes
     while queue:
@@ -64,13 +66,15 @@ def canUnlockAll(boxes):
         box = queue.pop(0)
 
         # Check each key in the current box
-        for k in boxes[box]:
-            # If the box is not unlocked
-            if not unlocked[k]:
+        for key in boxes[box]:
+            # Check if the key is not in the set
+            if key not in keys:
+                # Add the key to the set
+                keys.add(key)
                 # Mark it as unlocked
-                unlocked[k] = True
+                unlocked[key] = True
                 # Enqueue the newly opened box
-                queue.append(k)
+                queue.append(key)
 
     # Check if all boxes have been unlocked
     return all(unlocked)
