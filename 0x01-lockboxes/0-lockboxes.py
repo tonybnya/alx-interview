@@ -46,18 +46,31 @@ def canUnlockAll(boxes):
     Time Complexity: O(n + m)
     Space Complexity: O(n)
     """
+    # Initialize a variable n and set it to the number of boxes
     n = len(boxes)
+    # Initialize a variable unlocked as a list
+    # with the same length as the number of boxes
+    # Set each item of the list to False
     unlocked = [False] * n
 
+    # The first box is unlocked
     unlocked[0] = True
+    # Initialize a queue and enqueue the first box (0)
     queue = [0]
 
+    # Traverse the boxes
     while queue:
+        # Dequeue a box
         box = queue.pop(0)
 
-        for key in boxes[box]:
-            if not unlocked[key]:
-                unlocked[key] = True
-                queue.append(key)
+        # Check each key in the current box
+        for k in boxes[box]:
+            # If the box is not unlocked
+            if not unlocked[k]:
+                # Mark it as unlocked
+                unlocked[k] = True
+                # Enqueue the newly opened box
+                queue.append(k)
 
+    # Check if all boxes have been unlocked
     return all(unlocked)
