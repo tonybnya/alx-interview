@@ -78,17 +78,35 @@ def canUnlockAll(boxes):
     #
     # # Check if all boxes have been unlocked
     # return all(unlocked)
-    n = len(boxes)  # Number of boxes
-    unlocked = [False] * n  # Initialize the 'unlocked' list
 
-    def helper(box):
-        unlocked[box] = True
+    # n = len(boxes)  # Number of boxes
+    # unlocked = [False] * n  # Initialize the 'unlocked' list
+    #
+    # def helper(box):
+    #     unlocked[box] = True
+    #     for key in boxes[box]:
+    #         if not unlocked[key]:
+    #             helper(key)
+    #
+    # # Start checking from the first box
+    # helper(0)
+    #
+    # # Check if all boxes have been unlocked
+    # return all(unlocked)
+
+    n = len(boxes)
+    keys = set()  # Create a set to track the boxes we can open
+    keys.add(0)   # Start with the first box already opened
+
+    # Create a list to keep track of boxes that need to be checked
+    queue = [0]
+
+    while queue:
+        box = queue.pop()
         for key in boxes[box]:
-            if not unlocked[key]:
-                helper(key)
+            if key < n and key not in keys:
+                keys.add(key)
+                queue.append(key)
 
-    # Start checking from the first box
-    helper(0)
-
-    # Check if all boxes have been unlocked
-    return all(unlocked)
+    # Check if we can open all the boxes
+    return len(keys) == n
