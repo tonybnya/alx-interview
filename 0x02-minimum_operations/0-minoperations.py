@@ -66,4 +66,7 @@ def minOperations(n):
             n //= i
             operations += i
 
+        if n == 1:
+            break
+
     return operations
