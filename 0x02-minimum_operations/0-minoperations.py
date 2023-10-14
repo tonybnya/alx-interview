@@ -35,20 +35,35 @@ def minOperations(n):
         n (int): an integer as number of H to write
     Returns:
         an integer
+
+    Time Complexity: O(n^2)
+    Space Complexity: O(n)
     """
+    # Check if n is 0 or 1
+    # no operations are needed in these cases
     if n <= 1:
         return 0
 
-    operations = [0] * (n + 1)
+    # # Create an array to store the minimum operations for each number
+    # operations = [0] * (n + 1)
+    #
+    # for i in range(2, n + 1):
+    #     # Initialize operations for i to be i operations
+    #     operations[i] = i
+    #
+    #     for j in range(2, (i // 2) + 1):
+    #         if i % j == 0:
+    #             # If i is divisible by j, we can try to copy j times
+    #             # and then paste the result, which takes two operations.
+    #             operations[i] = min(operations[i], operations[j] + (i // j))
+
+    # Initialize the number of operations
+    operations = 0
 
     for i in range(2, n + 1):
-        # Initialize operations for i to be i operations
-        operations[i] = i
+        while n % i == 0:
+            # If i is a divisor of n, repeatedly perform 'Copy All' and 'Paste'
+            n //= i
+            operations += i
 
-        for j in range(2, (i // 2) + 1):
-            if i % j == 0:
-                # If i is divisible by j, we can try to copy j times
-                # and then paste the result, which takes two operations.
-                operations[i] = min(operations[i], operations[j] + (i // j))
-
-    return operations[n]
+    return operations
