@@ -42,8 +42,9 @@ def log_parsing():
     # codes is a dict to keep each status code
     # and its occurrence for each batch (10 lines)
     # counter is a counter to check if we reached a batch (10 lines)
-    # sizes is to sum the size of the current batch to all the previous
-    codes, counter, sizes = {}, 0, 0
+    # sizes is to sum the size of the current batch
+    # total_size is to add the sizes of the current batch to all the previous
+    codes, counter, sizes, total_size = {}, 0, 0, 0
     total_size = 0
 
     try:
