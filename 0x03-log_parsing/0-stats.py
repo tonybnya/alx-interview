@@ -32,31 +32,6 @@ def get_status_code_and_size(line):
     return status_code, size
 
 
-def logs(line):
-    """
-    This helper function gets the codes and sizes of each log line
-    """
-    # Set a variable codes, a dict,
-    # to keep each code as a key and its occurrences as value
-    # Set a variable sizes, an int,
-    # to add the value of each log line
-    codes, sizes = {}, 0
-
-    # Remove new line character with strip()
-    line = line.strip()
-
-    # Call the helper function to get the status_code and the size
-    status_code, size = get_status_code_and_size(line)
-
-    # Update the codes dict
-    codes[status_code] = codes.get(status_code, 0) + 1
-
-    # Add the value of the size of the current log line to the global sizes
-    sizes += size
-
-    return codes, sizes
-
-
 def log_parsing():
     """
     Function to perform Log Parsing
