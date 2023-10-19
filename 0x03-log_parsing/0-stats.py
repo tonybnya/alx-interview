@@ -4,7 +4,6 @@ Log parsing
 
 Write a script that reads stdin line by line and computes metrics
 """
-
 import re
 import sys
 
@@ -61,6 +60,7 @@ def log_parsing():
                 codes[status_code] = codes.get(status_code, 0) + 1
                 sizes += size
 
+            # Check if we reached a batch (10 lines) iteration
             if counter % 10 == 0:
                 total_size += sizes
                 print(f"File size: {total_size}")
