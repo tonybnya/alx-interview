@@ -21,15 +21,13 @@ def get_status_code_and_size(line):
 
     # Use re.search to find the status code in the log line
     match1 = re.search(pattern1, line)
-    #
+
     # Use re.search to find the file size in the log line
     match2 = re.search(pattern2, line)
 
-    if match1:
-        status_code = match1.group(1)
+    status_code = match1.group(1) if match1 else None
 
-    if match2:
-        size = int(match2.group(1))
+    size = int(match2.group(1)) if match2 else 0
 
     return status_code, size
 
