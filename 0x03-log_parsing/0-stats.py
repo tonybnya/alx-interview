@@ -56,6 +56,9 @@ def log_parsing():
             if status_code is not None:
                 codes[status_code] = codes.get(status_code, 0) + 1
                 sizes += size
+            else:
+                # Skip lines with wrong format
+                continue
 
             # Check if we reached a batch (10 lines) iteration
             if counter % 10 == 0:
@@ -65,9 +68,8 @@ def log_parsing():
                     for key in sorted(codes):
                         print(f"{key}: {codes[key]}")
 
-                # Reset sizes and codes for the next batch
+                # Reset codes for the next batch
                 sizes = 0
-                # codes = {}
 
         # Handle the case when there are fewer than 10 lines in the last batch
         if counter % 10 != 0:
