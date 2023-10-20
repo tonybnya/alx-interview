@@ -57,11 +57,6 @@ def log_parsing():
                 codes[status_code] = codes.get(status_code, 0) + 1
                 sizes += size
 
-            # Handle the case when there is only one line
-            if counter == 1:
-                print(f"File size: {size}")
-                for key in sorted(codes):
-                    print(f"{key}: {codes[key]}")
 
             # Check if we reached a batch (10 lines) iteration
             if counter % 10 == 0:
@@ -74,6 +69,12 @@ def log_parsing():
                 # Reset sizes and codes for the next batch
                 sizes = 0
                 codes = {}
+
+        # Handle the case when there is only one line
+        if counter == 1:
+            print(f"File size: {size}")
+            for key in sorted(codes):
+                print(f"{key}: {codes[key]}")
 
         # Handle the case when there are fewer
         # than 10 lines in the last batch
