@@ -44,7 +44,6 @@ def log_parsing():
     # sizes is to sum the size of the current batch
     # total_size is to add the sizes of the current batch to all the previous
     codes, counter, sizes, total_size = {}, 0, 0, 0
-    total_size = 0
 
     try:
         for line in sys.stdin:
@@ -73,10 +72,10 @@ def log_parsing():
                 sizes = 0
                 # codes = {}
 
-        if total_size > 0:
-            print(f"File size: {total_size}")
-            for key in sorted(codes):
-                print(f"{key}: {codes[key]}")
+        # if total_size > 0:
+        #     print(f"File size: {total_size}")
+        #     for key in sorted(codes):
+        #         print(f"{key}: {codes[key]}")
 
 
     except KeyboardInterrupt:
