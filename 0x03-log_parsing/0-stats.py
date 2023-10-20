@@ -71,7 +71,7 @@ def log_parsing():
 
         # Handle the case when there are fewer than 10 lines in the last batch
         if counter % 10 != 0:
-            total_size += sizes
+            total_size += size
             if total_size > 0:
                 print(f"File size: {total_size}")
                 for key in sorted(codes):
