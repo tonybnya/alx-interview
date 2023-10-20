@@ -41,6 +41,7 @@ def log_parsing():
     # sizes is to sum the size of the current batch
     # total_size is to add the sizes of the current batch to all the previous
     codes, counter, sizes, total_size = {}, 0, 0, 0
+    p = r'^\d+\.\d+\.\d+\.\d+ - \[.+\] "GET /projects/260 HTTP/1.1" \d+ \d+$'
 
     try:
         for line in sys.stdin:
@@ -49,6 +50,11 @@ def log_parsing():
             # remove any trailing whitespace with strip()
             line = line.strip()
 
+            # Check if the line matches the expected format
+            if not re.match(p, line):
+                # Skip lines that don't match the expected format
+                continue
+
             # Extract/get the status code of each line
             status_code, size = get_status_code_and_size(line)
 
@@ -56,9 +62,6 @@ def log_parsing():
             if status_code is not None:
                 codes[status_code] = codes.get(status_code, 0) + 1
                 sizes += size
-            else:
-                # Skip lines with wrong format
-                continue
 
             # Check if we reached a batch (10 lines) iteration
             if counter % 10 == 0:
