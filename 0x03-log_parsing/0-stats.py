@@ -70,21 +70,6 @@ def log_parsing():
                 sizes = 0
                 codes = {}
 
-        # Handle the case when there is only one line
-        if counter == 1:
-            print(f"File size: {size}")
-            for key in sorted(codes):
-                print(f"{key}: {codes[key]}")
-
-        # Handle the case when there are fewer
-        # than 10 lines in the last batch
-        if counter % 10 != 0:
-            total_size += sizes
-            if total_size > 0:
-                print(f"File size: {total_size}")
-                for key in sorted(codes):
-                    print(f"{key}: {codes[key]}")
-
     except KeyboardInterrupt:
         if sizes > 0:
             total_size += sizes
