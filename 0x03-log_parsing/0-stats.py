@@ -44,6 +44,7 @@ def log_parsing():
     # sizes is to sum the size of the current batch
     # total_size is to add the sizes of the current batch to all the previous
     codes, counter, sizes, total_size = {}, 0, 0, 0
+    total_size = 0
 
     try:
         for line in sys.stdin:
@@ -59,25 +60,19 @@ def log_parsing():
                 codes[status_code] = codes.get(status_code, 0) + 1
                 sizes += size
 
-            # Check if there is data in the current batch
-            if sizes > 0:
-                # Check if we reached a batch (10 lines) iteration
-                if counter % 10 == 0:
-                    total_size += sizes
-                    print(f"File size: {total_size}")
-                    for key in sorted(codes):
-                        print(f"{key}: {codes[key]}")
+            # Check if we reached a batch (10 lines) iteration
+            if counter % 10 == 0:
+                total_size += sizes
+                print(f"File size: {total_size}")
+                for key in sorted(codes):
+                    print(f"{key}: {codes[key]}")
 
-                    # Reset the counter, sizes, and codes for the next batch
-                    counter = 0
-                    sizes = 0
-                    # codes = {}
-            else:
-                # This handles cases of empty file or lines with wrong format
-                total_size = 0
+                # Reset the counter, sizes, and codes for the next batch
+                counter = 0
+                sizes = 0
+                codes = {}
 
     except KeyboardInterrupt:
-        # Check if there is data in the current batch
         if sizes > 0:
             total_size += sizes
         # Print the final statistics if a keyboard interruption occurs
