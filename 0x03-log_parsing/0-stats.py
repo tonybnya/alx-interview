@@ -68,7 +68,7 @@ def log_parsing():
                         print(f"{key}: {codes[key]}")
 
                 # Reset the counter, sizes, and codes for the next batch
-                # counter = 0
+                counter = 0
                 sizes = 0
                 # codes = {}
 
