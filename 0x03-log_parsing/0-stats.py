@@ -57,7 +57,6 @@ def log_parsing():
                 codes[status_code] = codes.get(status_code, 0) + 1
                 sizes += size
 
-
             # Check if we reached a batch (10 lines) iteration
             if counter % 10 == 0:
                 total_size += sizes
@@ -68,7 +67,15 @@ def log_parsing():
 
                 # Reset sizes and codes for the next batch
                 sizes = 0
-                codes = {}
+                # codes = {}
+
+        # Handle the case when there are fewer than 10 lines in the last batch
+        if counter % 10 != 0:
+            total_size += sizes
+            if total_size > 0:
+                print(f"File size: {total_size}")
+                for key in sorted(codes):
+                    print(f"{key}: {codes[key]}")
 
     except KeyboardInterrupt:
         if sizes > 0:
