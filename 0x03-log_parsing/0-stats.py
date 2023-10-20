@@ -70,7 +70,7 @@ def log_parsing():
                 # Reset the counter, sizes, and codes for the next batch
                 counter = 0
                 sizes = 0
-                # codes = {}
+                codes = {}
 
         # if total_size > 0:
         #     print(f"File size: {total_size}")
