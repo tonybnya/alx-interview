@@ -71,7 +71,7 @@ def log_parsing():
                     # Reset the counter, sizes, and codes for the next batch
                     counter = 0
                     sizes = 0
-                    codes = {}
+                    # codes = {}
             else:
                 # This handles cases of empty file or lines with wrong format
                 total_size = 0
