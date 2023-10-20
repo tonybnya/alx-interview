@@ -72,10 +72,10 @@ def log_parsing():
                 sizes = 0
                 codes = {}
 
-        # if total_size > 0:
-        #     print(f"File size: {total_size}")
-        #     for key in sorted(codes):
-        #         print(f"{key}: {codes[key]}")
+        if total_size > 0:
+            print(f"File size: {total_size}")
+            for key in sorted(codes):
+                print(f"{key}: {codes[key]}")
 
 
     except KeyboardInterrupt:
