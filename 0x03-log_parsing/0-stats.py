@@ -84,8 +84,8 @@ def log_parsing():
         # Print the final statistics if a keyboard interruption occurs
         if total_size > 0:
             print(f"File size: {total_size}")
-        for key in sorted(codes):
-            print(f"{key}: {codes[key]}")
+            for key in sorted(codes):
+                print(f"{key}: {codes[key]}")
 
 
 if __name__ == "__main__":
