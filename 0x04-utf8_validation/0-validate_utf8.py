@@ -27,4 +27,23 @@ def validUTF8(data: List[int]) -> bool:
         >>> print(validUTF8(data))
         >>> False
     """
-    pass
+    bytes_left = 0
+
+    for byte in data:
+        if bytes_left == 0:
+            if (byte & 0b10000000) == 0:
+                bytes_left = 0
+            elif (byte & 0b11100000) == 0b11000000:
+                bytes_left = 1
+            elif (byte & 0b11110000) == 0b11100000:
+                bytes_left = 2
+            elif (byte & 0b11111000) == 0b11110000:
+                bytes_left = 3
+            else:
+                return False
+        else:
+            if (byte & 0b11000000) != 0b10000000:
+                return False
+            bytes_left -= 1
+
+    return bytes_left == 0
