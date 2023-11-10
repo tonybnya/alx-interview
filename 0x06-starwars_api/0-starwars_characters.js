@@ -33,13 +33,13 @@ const requester = (url) => {
   });
 };
 
-async function main(filmID) {
+const main = async (filmID) => {
   const response = await requester(charsURL);
 
   for (const url of response.characters) {
     const result = await requester(url);
     log(result.name);
   }
-}
+};
 
 main(filmID);
