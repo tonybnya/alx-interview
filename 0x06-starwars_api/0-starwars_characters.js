@@ -22,24 +22,24 @@ const filmID = process.argv[2];
 const charsURL = `${url}${filmID}`;
 
 const requester = (url) => {
-  const options = {
-    uri: url,
-    json: true,
-  };
-
-  return request(options);
+  return new Promise((resolve, reject) => {
+    request(url, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+        resolve(JSON.parse(body));
+      } else {
+        reject(error);
+      }
+    });
+  });
 };
 
-const main = async () => {
-  try {
-    const response = await requester(charsURL);
+async function main(filmID) {
+  const response = await requester(charsURL);
 
-    for await (const url of response.characters.map(requester)) {
-      log(url.name);
-    }
-  } catch (error) {
-    log(`Error: ${error.message}`);
+  for (const url of response.characters) {
+    const result = await requester(url);
+    log(result.name);
   }
-};
+}
 
-main();
+main(filmID);
