@@ -38,7 +38,7 @@ def makeChange(coins: List[int], total: int) -> int:
     :param total: an integer
     :return: an integer
     """
-    if total <= 0 or not coins:
+    if total <= 0:
         return 0
 
     # TC: O(nlogn) - SP: O(n)
