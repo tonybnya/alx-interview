@@ -43,7 +43,7 @@ def makeChange(coins: List[int], total: int) -> int:
         return 0
 
     if not coins:
-        return -1
+        return 0
 
     remaining: int = total
 
