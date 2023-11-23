@@ -27,7 +27,6 @@ Examples:
     >>> print(makeChange(coins, total))
     >>> -1
 """
-from typing import List
 
 
 def makeChange(coins, total):
