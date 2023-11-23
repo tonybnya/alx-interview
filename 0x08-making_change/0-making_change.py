@@ -42,6 +42,9 @@ def makeChange(coins: List[int], total: int) -> int:
     if total <= 0:
         return 0
 
+    if not coins:
+        return -1
+
     remaining: int = total
 
     # TC: O(nlogn) - SP: O(1)
