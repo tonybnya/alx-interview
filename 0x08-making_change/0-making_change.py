@@ -16,7 +16,7 @@ determine the fewest number of coins needed to meet a given amount total.
 - Your solution’s runtime will be evaluated in this task
 
 Examples:
-    
+
     >>> coins = [1, 2, 25]
     >>> total = 37
     >>> print(makeChange(coins, total))
@@ -41,7 +41,8 @@ def makeChange(coins: List[int], total: int) -> int:
     if total <= 0:
         return 0
 
-    coins_sorted: List[int] = sorted(coins, reverse=True) # TC: O(nlogn) - SP: O(n)
+    # TC: O(nlogn) - SP: O(n)
+    coins_sorted: List[int] = sorted(coins, reverse=True)
     n: int = len(coins_sorted)
 
     counter: int = 0
