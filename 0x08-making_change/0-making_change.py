@@ -5,19 +5,32 @@ Change comes from within
 Given a pile of coins of different values,
 determine the fewest number of coins needed to meet a given amount total.
 
-- Prototype: def makeChange(coins, total)
-- Return: fewest number of coins needed to meet total
-If total is 0 or less, return 0
-If total cannot be met by any number of coins you have, return -1
-- coins is a list of the values of the coins in your possession
-- The value of a coin will always be an integer greater than 0
+- Prototype: `def makeChange(coins, total)`
+- Return: fewest number of coins needed to meet `total`
+    - If `total` is `0` or less, return `0`
+    - If `total` cannot be met by any number of coins you have, return `-1`
+- `coins` is a list of the values of the coins in your possession
+- The value of a coin will always be an integer greater than `0`
 - You can assume you have an infinite number of each denomination of coin
   in the list
 - Your solution’s runtime will be evaluated in this task
+
+Examples:
+    
+    >>> coins = [1, 2, 25]
+    >>> total = 37
+    >>> print(makeChange(coins, total))
+    >>> 7
+    >>>
+    >>> coins = [1256, 54, 48, 16, 102]
+    >>> total = 1453
+    >>> print(makeChange(coins, total))
+    >>> -1
 """
+from typing import List
 
 
-def makeChange(coins, total):
+def makeChange(coins: List[int], total: int) -> int:
     """
     Main function
 
@@ -25,4 +38,22 @@ def makeChange(coins, total):
     :param total: an integer
     :return: an integer
     """
-    pass
+    if total <= 0:
+        return 0
+
+    coins_sorted: List[int] = sorted(coins, reverse=True) # TC: O(nlogn) - SP: O(n)
+    n: int = len(coins_sorted)
+
+    counter: int = 0
+    i: int = 0
+    while total > 0:
+        if i >= n:
+            return -1
+
+        if total - coins_sorted[i] >= 0:
+            total -= coins_sorted[i]
+            counter += 1
+        else:
+            i += 1
+
+    return counter
