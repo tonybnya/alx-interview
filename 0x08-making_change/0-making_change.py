@@ -49,7 +49,7 @@ def makeChange(coins: List[int], total: int) -> int:
     coins.sort(reverse=True)
     num_coins: int = len(coins)
 
-    selected_coins: int = 0
+    fewest_number_coins: int = 0
     index: int = 0
     while total > 0:  # O(total)
         if index >= num_coins:
@@ -58,8 +58,8 @@ def makeChange(coins: List[int], total: int) -> int:
         coin = coins[index]
         if isinstance(coin, int) and total - coin >= 0:
             total -= coin
-            selected_coins += 1
+            fewest_number_coins += 1
         else:
             index += 1
 
-    return selected_coins
+    return fewest_number_coins
