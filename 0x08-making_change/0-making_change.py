@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """
-Change comes from within
-
 Given a pile of coins of different values,
 determine the fewest number of coins needed to meet a given amount total.
 
@@ -32,22 +30,25 @@ from typing import List
 
 def makeChange(coins: List[int], total: int) -> int:
     """
-    Main function
+    Change comes from within
 
     :param coins: a list of integers
     :param total: an integer
     :return: an integer
+
+    Time Complexity: O(nlogn + total)
+    Space Complexity: O(1) - the coins array has been sorted in place
     """
     if total <= 0:
         return 0
 
-    # TC: O(nlogn) - SP: O(n)
+    # TC: O(nlogn) - SP: O(1)
     coins.sort(reverse=True)
     num_coins: int = len(coins)
 
     selected_coins: int = 0
     index: int = 0
-    while total > 0:
+    while total > 0:  # O(total)
         if index >= num_coins:
             return -1
 
