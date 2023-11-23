@@ -38,23 +38,23 @@ def makeChange(coins: List[int], total: int) -> int:
     :param total: an integer
     :return: an integer
     """
-    if total <= 0:
+    if total <= 0 or not coins:
         return 0
 
     # TC: O(nlogn) - SP: O(n)
-    coins_sorted: List[int] = sorted(coins, reverse=True)
-    n: int = len(coins_sorted)
+    coins.sort(reverse=True)
+    num_coins: int = len(coins)
 
-    counter: int = 0
-    i: int = 0
+    selected_coins: int = 0
+    index: int = 0
     while total > 0:
-        if i >= n:
+        if index >= num_coins:
             return -1
 
-        if total - coins_sorted[i] >= 0:
-            total -= coins_sorted[i]
-            counter += 1
+        if total - coins[index] >= 0:
+            total -= coins[index]
+            selected_coins += 1
         else:
-            i += 1
+            index += 1
 
-    return counter
+    return selected_coins
