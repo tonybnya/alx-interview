@@ -55,8 +55,9 @@ def makeChange(coins: List[int], total: int) -> int:
         if index >= num_coins:
             return -1
 
-        if total - coins[index] >= 0:
-            total -= coins[index]
+        coin = coins[index]
+        if isinstance(coin, int) and total - coin >= 0:
+            total -= coin
             selected_coins += 1
         else:
             index += 1
