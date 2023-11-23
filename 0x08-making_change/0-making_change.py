@@ -30,7 +30,7 @@ from typing import List
 
 def makeChange(coins: List[int], total: int) -> int:
     """
-    Change comes from within
+    Find the fewest number of coins needed to meet the given total.
 
     :param coins: a list of integers
     :param total: an integer
