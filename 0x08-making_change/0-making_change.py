@@ -56,7 +56,7 @@ def makeChange(coins: List[int], total: int) -> int:
             return -1
 
         coin = coins[index]
-        if isinstance(coin, int) and total - coin >= 0:
+        if total - coin >= 0:
             total -= coin
             fewest_number_coins += 1
         else:
