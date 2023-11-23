@@ -43,9 +43,7 @@ def makeChange(coins: List[int], total: int) -> int:
         return 0
 
     if not coins:
-        return 0
-
-    remaining: int = total
+        return -1
 
     # TC: O(nlogn) - SP: O(1)
     coins.sort(reverse=True)
@@ -53,12 +51,12 @@ def makeChange(coins: List[int], total: int) -> int:
 
     selected_coins: int = 0
     index: int = 0
-    while remaining > 0:  # O(total)
+    while total > 0:  # O(total)
         if index >= num_coins:
             return -1
 
-        if remaining - coins[index] >= 0:
-            remaining -= coins[index]
+        if total - coins[index] >= 0:
+            total -= coins[index]
             selected_coins += 1
         else:
             index += 1
