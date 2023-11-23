@@ -30,7 +30,7 @@ Examples:
 from typing import List
 
 
-def makeChange(coins: List[int], total: int) -> int:
+def makeChange(coins, total):
     """
     Main function
 
