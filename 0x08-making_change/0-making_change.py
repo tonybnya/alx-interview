@@ -15,15 +15,13 @@ determine the fewest number of coins needed to meet a given amount total.
 
 Examples:
 
-    >>> coins = [1, 2, 25]
-    >>> total = 37
-    >>> print(makeChange(coins, total))
+    >>> print(makeChange([1, 2, 25]), 37)
     >>> 7
     >>>
-    >>> coins = [1256, 54, 48, 16, 102]
-    >>> total = 1453
-    >>> print(makeChange(coins, total))
+    >>> print(makeChange([1256, 54, 48, 16, 102], 1453)
     >>> -1
+    >>> print(makeChange([186, 419, 83, 408], 6249)
+    >>> 20
 """
 from typing import List
 
