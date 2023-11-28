@@ -24,4 +24,20 @@ def island_perimeter(grid):
     :param grid: a list of list of integers
     :return: an integer as the perimeter
     """
-    pass
+    perimeter = 0
+
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] == 1:
+                # Assuming all 4 sides are initially counted
+                perimeter += 4
+
+                # Check and subtract for adjacent land cells
+                if i > 0 and grid[i - 1][j] == 1:
+                    # Subtract 2 for the shared edge with the upper cell
+                    perimeter -= 2
+                if j > 0 and grid[i][j - 1] == 1:
+                    # Subtract 2 for the shared edge with the left cell
+                    perimeter -= 2
+
+    return perimeter
